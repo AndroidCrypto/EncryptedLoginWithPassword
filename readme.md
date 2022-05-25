@@ -1,4 +1,4 @@
-#Encrypted login with password
+# Encrypted login with password
 
 This concept study shows how to make an app login with a password.
 
