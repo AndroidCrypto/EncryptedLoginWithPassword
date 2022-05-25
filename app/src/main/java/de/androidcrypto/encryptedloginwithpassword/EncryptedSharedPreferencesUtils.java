@@ -117,18 +117,13 @@ public class EncryptedSharedPreferencesUtils {
     }
 
     public static boolean getAppPasswordStatus() {
-        boolean result = false;
         String saltBase64 = getEncryptedSharedPreferences(SALT_APP_PASSWORD);
         if (saltBase64.equals(encryptedSharedPreferencesDefaultValue)) {
-            return result;
+            return false;
         } else {
             System.out.println("*** saltBase64: " + saltBase64);
             return true;
         }
-    }
-
-    public static boolean getAppPasswordVerificationStatus() {
-        return isAppPasswordVerified;
     }
 
     /**

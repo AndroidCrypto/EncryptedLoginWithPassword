@@ -48,3 +48,12 @@ it return a negative one ("false").
 positive or ask the user to re-enter the password if the result is negative. 
 
 Just for clarification: **the app never stores the password but only the PBKDF2 hashed password**.
+
+Additional features in **Settings activity**:
+
+There are two more buttons on the Settings screen:
+
+- change password: enter the old and the new password and if the old password gets verified AND the  
+password length of the new password is saved.
+
+- reset password: the stored password hash and salt is deleted.

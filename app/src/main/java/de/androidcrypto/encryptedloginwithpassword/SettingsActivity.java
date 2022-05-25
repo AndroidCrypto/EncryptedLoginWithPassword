@@ -50,7 +50,7 @@ public class SettingsActivity extends AppCompatActivity {
         resetAppPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setButtonsDisabledForUsing();
+                resetPassword(view);
             }
         });
 
