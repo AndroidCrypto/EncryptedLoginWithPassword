@@ -21,9 +21,9 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView loginStatus;
 
-    public boolean isAppPasswordAccepted() {
-        return appPasswordAccepted;
-    }
+    //public boolean isAppPasswordAccepted() {
+      //  return appPasswordAccepted;
+    //}
 
     private boolean appPasswordAccepted = false;
 
@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //public void loadPasswordPressed(View v) {
     public void loadPassword() {
-        ConstraintLayout constraintLayout = findViewById(R.id.settingsConstraintLayout);
+        ConstraintLayout constraintLayout = findViewById(R.id.loginConstraintLayout);
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(constraintLayout.getContext());
         alertDialog.setTitle("Programm Passwort eingeben");
         String message = "\nBitte geben Sie ein mindestens\n8-stelliges Passwort ein und drücken\nSie auf LADEN, um alle\nProgrammfunktionen nutzen\nzu können.";
@@ -72,53 +72,25 @@ public class LoginActivity extends AppCompatActivity {
                     snackbar.show();
                     return;
                 }
-
                 // verify the entered hashed password with the stored one
                 boolean result = EncryptedSharedPreferencesUtils.verifyAppPassword(oldPassword);
                 if (result) {
                     appPasswordAccepted = true;
                     loginStatus.setText("*** the verification was SUCCESSFUL");
                     System.out.println("*** the verification was TRUE");
-    /*
-                    Snackbar snackbar = Snackbar.make(v, "The App password was stored.", Snackbar.LENGTH_LONG);
-                    snackbar.setBackgroundTint(ContextCompat.getColor(v.getContext(), R.color.green));
+                    Snackbar snackbar = Snackbar.make(constraintLayout, "The App password was verified", Snackbar.LENGTH_LONG);
+                    snackbar.setBackgroundTint(ContextCompat.getColor(constraintLayout.getContext(), R.color.green));
                     snackbar.show();
-
-     */
-                    //setButtonsEnabledForUsing();
                     return;
                 } else {
                     appPasswordAccepted = false;
                     loginStatus.setText("*** the verification was NOT SUCCESSFUL");
                     System.out.println("*** the verification was FALSE");
-
-                    /*
-
-                    Snackbar snackbar = Snackbar.make(v, "Soething got wrong, sorry.", Snackbar.LENGTH_LONG);
-                    snackbar.setBackgroundTint(ContextCompat.getColor(v.getContext(), R.color.red));
-                    snackbar.show();*/
+                    Snackbar snackbar = Snackbar.make(constraintLayout, "Something went wrong, sorry.", Snackbar.LENGTH_LONG);
+                    snackbar.setBackgroundTint(ContextCompat.getColor(constraintLayout.getContext(), R.color.red));
+                    snackbar.show();
                     //return;
                 }
-
-                /*
-                // loading the encrypted masterKey from internal storage
-                byte[] encryptedMasterKey = loadEncryptedMasterKey(encryptedMasterKeyFileName);
-                boolean internalEncryptedMasterKeyAvailable = Encryption.decryptMasterKeyAesGcmPbkdf2InternallyFromBase64(encryptedMasterKey, oldPassword);
-                if (!internalEncryptedMasterKeyAvailable) {
-                    Snackbar snackbar = Snackbar.make(v, "Das Passwort ist falsch.", Snackbar.LENGTH_LONG);
-                    snackbar.setBackgroundTint(ContextCompat.getColor(SettingsActivity.this, R.color.red));
-                    snackbar.show();
-                    return;
-                }
-                // activate work buttons
-                allWorkButtonsEnabled();
-                enableChangePasswordButton();
-                enableResetPasswordButton();
-                // start des count down timers
-                startCountdownTimer(v);*/
-                Snackbar snackbar = Snackbar.make(constraintLayout, "Die App ist nun bereit", Snackbar.LENGTH_SHORT);
-                snackbar.setBackgroundTint(ContextCompat.getColor(constraintLayout.getContext(), R.color.green));
-                snackbar.show();
             }
         });
         alertDialog.setNegativeButton("abbrechen", new DialogInterface.OnClickListener() {

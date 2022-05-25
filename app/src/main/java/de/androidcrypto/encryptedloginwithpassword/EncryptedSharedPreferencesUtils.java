@@ -72,6 +72,21 @@ public class EncryptedSharedPreferencesUtils {
         return true;
     }
 
+    public static boolean changeAppPassword(char[] oldPassword, char[] newPassword) {
+        // first checks that the old password is correct
+        // uses EncryptionUtilities to hash the password with PBKDF2
+        // stores the hashed password and the random salt for later verification
+        // return true if successful
+        boolean isNewPasswordSet = false;
+        boolean isOldPasswordVerified = verifyAppPassword(oldPassword);
+        if (!isOldPasswordVerified) {
+            return false;
+        }
+        // now the oldPassword is verified, lets set the new password
+        isNewPasswordSet = saveNewAppPassword(newPassword);
+        return isNewPasswordSet;
+    }
+
     public static boolean verifyAppPassword(char[] passwordToVerify) {
         // uses EncryptionUtilities to hash the password with PBKDF2
         // stores the hashed password and the random salt for later verification
@@ -93,6 +108,12 @@ public class EncryptedSharedPreferencesUtils {
         boolean result = encryptionUtil.getVerificationResult();
         isAppPasswordVerified = result;
         return result;
+    }
+
+    public static boolean resetAppPassword() {
+        saveEncryptedSharedPreferences(HASHED_APP_PASSWORD, encryptedSharedPreferencesDefaultValue);
+        saveEncryptedSharedPreferences(SALT_APP_PASSWORD, encryptedSharedPreferencesDefaultValue);
+        return true;
     }
 
     public static boolean getAppPasswordStatus() {
