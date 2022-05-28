@@ -1,29 +1,23 @@
 package de.androidcrypto.encryptedloginwithpassword;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
-
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 
 public class LoginActivity extends AppCompatActivity {
 
     TextView loginStatus;
-
-    //public boolean isAppPasswordAccepted() {
-      //  return appPasswordAccepted;
-    //}
 
     private boolean appPasswordAccepted = false;
 
@@ -44,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         String message = "\nBitte geben Sie ein mindestens\n8-stelliges Passwort ein und drücken\nSie auf LADEN, um alle\nProgrammfunktionen nutzen\nzu können.";
         alertDialog.setMessage(message);
         final EditText oldPassphrase = new EditText(constraintLayout.getContext());
-        oldPassphrase.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.round_rect_shape, null));
+        oldPassphrase.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_rect_shape, null));
         //oldPassphrase.setBackground(getResources().getDrawable(R.drawable.round_rect_shape));
         oldPassphrase.setHint("  Passwort");
         oldPassphrase.setPadding(50, 20, 50, 20);
